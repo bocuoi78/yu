@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentUnitDto implements Serializable {
-    private String studentId;
+    private Long studentId;
     private Long unitId;
     private Integer position;
     private String positionName;

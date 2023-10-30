@@ -18,6 +18,7 @@ public class StudentMapper {
     public StudentDto toDto(Student student) {
         StudentDto studentDto = new StudentDto();
         studentDto.setId(student.getId());
+        studentDto.setSId(student.getSId());
         studentDto.setName(student.getName());
         studentDto.setBirthday(student.getBirthday());
         studentDto.setGender(student.getGender());
@@ -45,6 +46,7 @@ public class StudentMapper {
     public Student toEntity(StudentDto studentDto) {
         Student student = new Student();
         student.setId(studentDto.getId());
+        student.setSId(studentDto.getSId());
         student.setName(studentDto.getName());
         student.setBirthday(studentDto.getBirthday());
         student.setGender(studentDto.getGender());

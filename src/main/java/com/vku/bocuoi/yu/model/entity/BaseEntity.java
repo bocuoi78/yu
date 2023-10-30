@@ -9,7 +9,7 @@ import java.util.Date;
 @MappedSuperclass
 @Data
 public abstract class BaseEntity implements Serializable {
-        @Column(name = "CREATED_BY", length = 100)
+    @Column(name = "CREATED_BY", length = 100)
     private String createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)

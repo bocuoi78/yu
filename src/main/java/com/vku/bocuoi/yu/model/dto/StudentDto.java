@@ -15,7 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentDto implements Serializable {
-    private String id;
+    private Long id;
+    private String sId;
     private String name;
     private Date birthday;
     private Boolean gender;

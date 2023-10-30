@@ -13,6 +13,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class VolunteerDto implements Serializable {
     private Long activityId;
-    private String studentId;
+    private Long studentId;
     private String description;
 }

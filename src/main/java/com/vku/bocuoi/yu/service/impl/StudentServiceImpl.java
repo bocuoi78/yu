@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,7 +29,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentDto detail(String id) {
+    public StudentDto detail(Long id) {
         Student student = studentRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException(String.format("Student with id [%d] was not found!", id)));
         return StudentMapper.getInstance().toDto(student);
@@ -50,9 +51,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void remove(String id) {
+    public void remove(Long id) {
         Student deleteStudent = studentRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException(String.format("Student with id [%d] was not found!", id)));
         studentRepository.delete(deleteStudent);
+    }
+
+    @Override
+    public StudentDto findBySId(String studentId) {
+        return StudentMapper.getInstance().toDto(studentRepository.findStudentBysId(studentId)
+                .orElseThrow(()-> new EntityNotFoundException(String.format("Student with id [%s] was not found!", studentId))));
     }
 }

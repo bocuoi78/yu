@@ -36,7 +36,7 @@ public class StudentController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponseDto> detail(
-            @PathVariable(name = "id") String id
+            @PathVariable(name = "id") Long id
     ) {
         try {
             StudentDto studentDtoResponse = studentService.detail(id);
@@ -90,7 +90,7 @@ public class StudentController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponseDto> remove(
-            @PathVariable(name = "id") String id
+            @PathVariable(name = "id") Long id
     ) {
         try {
             studentService.remove(id);
