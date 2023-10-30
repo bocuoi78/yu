@@ -1,9 +1,7 @@
 package com.vku.bocuoi.yu.mapper;
 
 import com.vku.bocuoi.yu.model.dto.StudentDto;
-import com.vku.bocuoi.yu.model.dto.UnitDto;
 import com.vku.bocuoi.yu.model.entity.Student;
-import com.vku.bocuoi.yu.model.entity.Unit;
 
 import java.util.stream.Collectors;
 

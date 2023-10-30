@@ -1,11 +1,8 @@
 package com.vku.bocuoi.yu.service.impl;
 
 import com.vku.bocuoi.yu.mapper.StudentMapper;
-import com.vku.bocuoi.yu.mapper.UnitMapper;
 import com.vku.bocuoi.yu.model.dto.StudentDto;
-import com.vku.bocuoi.yu.model.dto.UnitDto;
 import com.vku.bocuoi.yu.model.entity.Student;
-import com.vku.bocuoi.yu.model.entity.Unit;
 import com.vku.bocuoi.yu.repository.StudentRepository;
 import com.vku.bocuoi.yu.service.StudentService;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,11 +51,5 @@ public class StudentServiceImpl implements StudentService {
         Student deleteStudent = studentRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException(String.format("Student with id [%d] was not found!", id)));
         studentRepository.delete(deleteStudent);
-    }
-
-    @Override
-    public StudentDto findBySId(String studentId) {
-        return StudentMapper.getInstance().toDto(studentRepository.findStudentBysId(studentId)
-                .orElseThrow(()-> new EntityNotFoundException(String.format("Student with id [%s] was not found!", studentId))));
     }
 }

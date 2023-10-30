@@ -1,6 +1,5 @@
 package com.vku.bocuoi.yu.model.dto;
 
-import com.vku.bocuoi.yu.model.entity.StudentUnit;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

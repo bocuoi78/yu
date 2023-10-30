@@ -8,7 +8,6 @@ import com.vku.bocuoi.yu.model.entity.Student;
 import com.vku.bocuoi.yu.repository.StudentRepository;
 import com.vku.bocuoi.yu.service.AuthenticationService;
 import com.vku.bocuoi.yu.service.JwtService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
