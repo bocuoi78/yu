@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class FeedbackDto implements Serializable {
     private Long id;
-    private Long studentId;
+    private String studentId;
     private String title;
     private String content;
 }

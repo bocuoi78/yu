@@ -1,5 +1,6 @@
 package com.vku.bocuoi.yu.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,26 +15,32 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentDto implements Serializable {
-    private Long id;
-    private String sId;
+    private String id;
     private String name;
-    private Date birthday;
     private Boolean gender;
-    private String nation;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Ho_Chi_Minh")
+    private Date birthday;
     private String cId;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Ho_Chi_Minh")
     private Date cIdDate;
     private String cIdPlace;
-    private String phone;
-    private String email;
+    private String hometown;
+    private String addressPermanent;
+    private String nationality;
+    private String nation;
     private String religion;
     private String educationalLevel;
     private String qualification;
     private String politicalTheory;
-    private String addressPermanent;
-    private String addressTemporary;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Ho_Chi_Minh")
     private Date dateIn;
     private String placeIn;
-    private String image;
-    private String password;
-    private Set<StudentUnitDto> studentUnitDtoSet;
+    private String email;
+    private String phone;
+    private String facebook;
+//    private String image;
+//    private String password;
+//    private OrganizationDto organizationDto;
+    private Long organizationId;
+    private Set<RoleDto> roleDtoSet;
 }

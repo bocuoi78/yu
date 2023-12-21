@@ -16,56 +16,56 @@ public class StudentMapper {
     public StudentDto toDto(Student student) {
         StudentDto studentDto = new StudentDto();
         studentDto.setId(student.getId());
-        studentDto.setSId(student.getSId());
         studentDto.setName(student.getName());
-        studentDto.setBirthday(student.getBirthday());
         studentDto.setGender(student.getGender());
-        studentDto.setNation(student.getNation());
+        studentDto.setBirthday(student.getBirthday());
         studentDto.setCId(student.getCId());
         studentDto.setCIdDate(student.getCIdDate());
         studentDto.setCIdPlace(student.getCIdPlace());
-        studentDto.setPhone(student.getPhone());
-        studentDto.setEmail(student.getEmail());
+        studentDto.setHometown(student.getHometown());
+        studentDto.setAddressPermanent(student.getAddressPermanent());
+        studentDto.setNationality(student.getNationality());
+        studentDto.setNation(student.getNation());
         studentDto.setReligion(student.getReligion());
         studentDto.setEducationalLevel(student.getEducationalLevel());
         studentDto.setQualification(student.getQualification());
         studentDto.setPoliticalTheory(student.getPoliticalTheory());
-        studentDto.setAddressPermanent(student.getAddressPermanent());
-        studentDto.setAddressTemporary(student.getAddressTemporary());
         studentDto.setDateIn(student.getDateIn());
         studentDto.setPlaceIn(student.getPlaceIn());
-        studentDto.setImage(student.getImage());
-        studentDto.setPassword(student.getPassword());
-        studentDto.setStudentUnitDtoSet(student.getStudentUnitSet().stream()
-                .map(studentUnit -> StudentUnitMapper.getInstance().toDto(studentUnit))
+        studentDto.setPhone(student.getPhone());
+        studentDto.setEmail(student.getEmail());
+        studentDto.setFacebook(student.getFacebook());
+        studentDto.setOrganizationId(student.getOrganizationId());
+        studentDto.setRoleDtoSet(student.getRoleSet().stream()
+                .map(role -> RoleMapper.getInstance().toDto(role))
                 .collect(Collectors.toSet()));
         return studentDto;
     }
     public Student toEntity(StudentDto studentDto) {
         Student student = new Student();
         student.setId(studentDto.getId());
-        student.setSId(studentDto.getSId());
         student.setName(studentDto.getName());
-        student.setBirthday(studentDto.getBirthday());
         student.setGender(studentDto.getGender());
-        student.setNation(studentDto.getNation());
+        student.setBirthday(studentDto.getBirthday());
         student.setCId(studentDto.getCId());
         student.setCIdDate(studentDto.getCIdDate());
         student.setCIdPlace(studentDto.getCIdPlace());
-        student.setPhone(studentDto.getPhone());
-        student.setEmail(studentDto.getEmail());
+        student.setHometown(studentDto.getHometown());
+        student.setAddressPermanent(studentDto.getAddressPermanent());
+        student.setNationality(studentDto.getNationality());
+        student.setNation(studentDto.getNation());
         student.setReligion(studentDto.getReligion());
         student.setEducationalLevel(studentDto.getEducationalLevel());
         student.setQualification(studentDto.getQualification());
         student.setPoliticalTheory(studentDto.getPoliticalTheory());
-        student.setAddressPermanent(studentDto.getAddressPermanent());
-        student.setAddressTemporary(studentDto.getAddressTemporary());
         student.setDateIn(studentDto.getDateIn());
         student.setPlaceIn(studentDto.getPlaceIn());
-        student.setImage(studentDto.getImage());
-        student.setPassword(studentDto.getPassword());
-        student.setStudentUnitSet(studentDto.getStudentUnitDtoSet().stream()
-                .map(studentUnitDto -> StudentUnitMapper.getInstance().toEntity(studentUnitDto))
+        student.setPhone(studentDto.getPhone());
+        student.setEmail(studentDto.getEmail());
+        student.setFacebook(studentDto.getFacebook());
+        student.setOrganizationId(studentDto.getOrganizationId());
+        student.setRoleSet(studentDto.getRoleDtoSet().stream()
+                .map(roleDto -> RoleMapper.getInstance().toEntity(roleDto))
                 .collect(Collectors.toSet()));
         return student;
     }

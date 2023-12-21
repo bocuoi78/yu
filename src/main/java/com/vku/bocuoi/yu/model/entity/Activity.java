@@ -20,9 +20,9 @@ public class Activity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "UNIT_ID")
-    private Unit unit;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "UNIT_ID")
+//    private Organization organization;
 
     @Column(name = "FROM_TIME")
     private Date fromTime;

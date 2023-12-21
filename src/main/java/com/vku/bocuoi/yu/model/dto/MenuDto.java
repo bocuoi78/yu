@@ -14,6 +14,8 @@ import java.io.Serializable;
 public class MenuDto implements Serializable {
     private Long id;
     private Long menuId;
+    private String path;
     private String name;
     private String description;
+    private Boolean status;
 }

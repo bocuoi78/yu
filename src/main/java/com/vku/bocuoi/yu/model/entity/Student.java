@@ -1,5 +1,6 @@
 package com.vku.bocuoi.yu.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,92 +13,115 @@ import java.util.*;
 @Entity
 @Builder
 @Data
-@Table(name = "STUDENT")
+@Table(name = "STUDENTS")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student extends BaseEntity implements UserDetails {
     @Id
-    @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "STUDENT_ID", nullable = false)
+    private String studentId;
 
-    @Column(name = "SID", unique = true, nullable = false)
-    private String sId;
-
-    @Column(name = "NAME", nullable = false, length = 100)
-    private String name;
+    @Column(name = "STUDENT_NAME", nullable = false, length = 100)
+    private String studentName;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "BIRTHDAY")
+    @Column(name = "BIRTHDAY", nullable = false)
     private Date birthday;
 
     @Column(name = "GENDER")
     private Boolean gender;
 
-    @Column(name = "NATION", length = 100)
-    private String nation;
-
     @Column(name = "CID", nullable = false, length = 13)
-    private String cId;
+    private String cid;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "CID_DATE")
-    private Date cIdDate;
+    private Date cidDate;
 
     @Column(name = "CID_PLACE", length = 100)
-    private String cIdPlace;
+    private String cidPlace;
 
-    @Column(name = "PHONE", nullable = false, length = 10)
-    private String phone;
+    @Column(name = "HOMETOWN")
+    private String hometown;
 
-    @Column(name = "EMAIL", length = 100)
-    private String email;
-
-    @Column(name = "RELIGION", length = 100)
-    private String religion;
-
-    @Column(name = "EDUCATIONAL_LEVEL", length = 100)
-    private String educationalLevel;
-
-    @Column(name = "QUALIFICATION", length = 100)
-    private String qualification;
-
-    @Column(name = "POLITICAL_THEORY", length = 100)
-    private String politicalTheory;
-
-    @Column(name = "ADDRESS_PERMANENT", length = 500)
+    @Column(name = "ADDRESS_PERMANENT")
     private String addressPermanent;
 
-    @Column(name = "ADDRESS_TEMPORARY", length = 500)
-    private String addressTemporary;
+    @Column(name = "NATIONALITY")
+    private String nationality;
+
+    @Column(name = "NATION")
+    private String nation;
+
+    @Column(name = "RELIGION")
+    private String religion;
+
+    @Column(name = "EDUCATIONAL_LEVEL")
+    private String educationalLevel;
+
+    @Column(name = "QUALIFICATION")
+    private String qualification;
+
+    @Column(name = "POLITICAL_THEORY")
+    private String politicalTheory;
 
     @Column(name = "DATE_IN")
     private Date dateIn;
 
-    @Column(name = "PLACE_IN", length = 100)
+    @Column(name = "PLACE_IN")
     private String placeIn;
 
-    @Column(name = "IMAGE", length = 256)
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "PHONE", nullable = false, length = 10)
+    private String phone;
+
+    @Column(name = "FACEBOOK")
+    private String facebook;
+
+    @Column(name = "IMAGE")
     private String image;
 
     @Column(name = "PASSWORD", nullable = false, length = 100)
-    private String password = "Abc@123";
+    private String password;
 
-    @OneToMany(mappedBy = "student")
-    private Set<StudentUnit> studentUnitSet = new LinkedHashSet<>();
+    @Column(name = "RESET_PASSWORD_CODE")
+    private String resetPasswordCode;
 
-    @OneToMany(mappedBy = "student")
-    private Set<Volunteer> volunteerSet = new LinkedHashSet<>();
+    @Column(name = "RESET_PASSWORD_EXPIRY")
+    private Date resetPasswordExpiry;
 
-    @OneToMany(mappedBy = "student")
-    private Set<Feedback> feedbackSet = new LinkedHashSet<>();
+//    @JsonBackReference
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "STUDENT_UNIT_ROLE",
+//            joinColumns = @JoinColumn(name = "STUDENT_ID"),
+//            inverseJoinColumns = @JoinColumn(name = "ORGANIZATION_ID"))
+//    private Organization organizationSet;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @Column(name = "UNIT_ID", nullable = false)
+    private Unit unit;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "STUDENT_ROLE",
+            joinColumns = @JoinColumn(name = "STUDENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    private Set<Role> roleSet = new LinkedHashSet<>();
+
+//    @OneToMany(mappedBy = "student")
+//    private Set<Volunteer> volunteerSet = new LinkedHashSet<>();
+//
+//    @OneToMany(mappedBy = "student")
+//    private Set<Feedback> feedbackSet = new LinkedHashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        for (Role role : roleSet) {
+            authorities.add(new SimpleGrantedAuthority(String.valueOf(role.getId())));
+        }
+        return authorities;
     }
 
     @Override
@@ -107,7 +131,7 @@ public class Student extends BaseEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return sId;
+        return studentId;
     }
 
     @Override

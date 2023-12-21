@@ -2,6 +2,7 @@ package com.vku.bocuoi.yu.config;
 
 import com.vku.bocuoi.yu.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,12 +17,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-
-    private final StudentRepository studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return studentId -> studentRepository.findStudentBysId(studentId)
+        return studentId -> studentRepository.findById(studentId)
                 .orElseThrow(() -> new UsernameNotFoundException("Student not found"));
     }
 

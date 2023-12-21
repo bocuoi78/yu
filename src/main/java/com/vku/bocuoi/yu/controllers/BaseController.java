@@ -1,6 +1,6 @@
 package com.vku.bocuoi.yu.controllers;
 
-import com.vku.bocuoi.yu.model.dto.ApiResponseDto;
+import com.vku.bocuoi.yu.model.dto.response.ApiResponseDto;
 import com.vku.bocuoi.yu.utils.CommonConstants;
 import com.vku.bocuoi.yu.utils.MessageUtils;
 import org.springframework.beans.factory.annotation.Autowired;

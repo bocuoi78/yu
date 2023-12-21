@@ -6,6 +6,6 @@ import com.vku.bocuoi.yu.auth.RegisterRequest;
 
 public interface AuthenticationService {
     AuthenticationResponse register(RegisterRequest request);
-
     AuthenticationResponse authenticate(AuthenticationRequest request);
+//    ApiResponseDto resetPassword();
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -39,12 +40,13 @@ public class JwtServiceImpl implements JwtService {
             Map<String, Object> extractClaims,
             UserDetails userDetails
     ) {
+        extractClaims.put("authorities", userDetails.getAuthorities());
         return Jwts
                 .builder()
                 .setClaims(extractClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 2))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24*24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
